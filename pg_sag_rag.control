@@ -1,0 +1,4 @@
+comment = 'SQL-native multi-hop RAG for PostgreSQL'
+default_version = '0.1.0'
+relocatable = false
+requires = 'vector,pg_trgm'

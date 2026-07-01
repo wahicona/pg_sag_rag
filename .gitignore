@@ -1,0 +1,13 @@
+.DS_Store
+.idea/
+.vscode/
+*.log
+tmp/
+coverage/
+pgdata/
+work/
+outputs/
+data/*
+!data/README.md
+demo/hotpotqa_sample.sql
+demo/enterprise_benchmark.sql

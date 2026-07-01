@@ -1,0 +1,44 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build PostgreSQL image
+        run: docker compose build
+
+      - name: Start PostgreSQL
+        run: docker compose up -d
+
+      - name: Wait for PostgreSQL
+        run: |
+          for i in {1..60}; do
+            if docker compose exec -T postgres pg_isready -U postgres -d rag; then
+              exit 0
+            fi
+            sleep 2
+          done
+          docker compose logs postgres
+          exit 1
+
+      - name: Run smoke test
+        run: docker compose exec -T postgres psql -U postgres -d rag -f /workspace/tests/smoke.sql
+
+      - name: Run benchmark test
+        run: docker compose exec -T postgres psql -U postgres -d rag -f /workspace/tests/benchmark.sql
+
+      - name: Run profile test
+        run: docker compose exec -T postgres psql -U postgres -d rag -f /workspace/tests/profile.sql
+
+      - name: Run router test
+        run: docker compose exec -T postgres psql -U postgres -d rag -f /workspace/tests/router.sql
+
+      - name: Show logs on failure
+        if: failure()
+        run: docker compose logs postgres

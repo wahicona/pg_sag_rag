@@ -1,0 +1,7 @@
+.git/
+.DS_Store
+work/
+outputs/
+pgdata/
+tmp/
+*.log

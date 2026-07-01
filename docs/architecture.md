@@ -1,6 +1,6 @@
 # pg_sag_rag Architecture
 
-`pg_sag_rag` keeps RAG retrieval inside PostgreSQL and leaves model calls outside the database.
+`pg_sag_rag` keeps a narrow retrieval primitive inside PostgreSQL and leaves extraction, embedding generation, model calls, and API orchestration outside the database.
 
 The core model is:
 
@@ -19,7 +19,7 @@ The retrieval path is:
 
 Applications can call the low-level search functions directly, run named profiles with `sag_rag.search_events_profile`, or use `sag_rag.search_events_auto` to choose a profile through `sag_rag.query_route_rule`.
 
-This is intentionally lighter than a full knowledge graph. The extension does not extract entities or call LLMs. Applications ingest documents, embeddings, events, and entities, then call SQL retrieval functions.
+This is intentionally lighter than a full GraphRAG framework or knowledge graph system. The extension does not extract entities or call LLMs. Applications ingest documents, embeddings, events, and entities, then call SQL retrieval functions.
 
 ## Why SQL First
 

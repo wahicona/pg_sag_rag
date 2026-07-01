@@ -1,8 +1,10 @@
 # pg_sag_rag
 
-GraphRAG without the graph database. `pg_sag_rag` is a PostgreSQL extension for SQL-native multi-hop RAG using ordinary joins, `pgvector`, and PostgreSQL full-text search.
+SQL-native multi-hop RAG for PostgreSQL. `pg_sag_rag` is a PostgreSQL extension that models enterprise knowledge as documents, chunks, events, entities, and event-entity links, then uses ordinary SQL JOINs, `pgvector`, and PostgreSQL full-text search for retrieval.
 
 The project targets enterprise RAG and Agent data layers where documents, chunks, events, entities, permissions, metadata, and retrieval traces should live in one auditable database.
+
+This project is not claiming to be the first PostgreSQL RAG or GraphRAG project. It is intentionally narrower: a SQL-only extension that focuses on event-level retrieval, relation expansion through `event_entity`, query routing, and database-native evaluation.
 
 ## Status
 
@@ -30,6 +32,7 @@ Current benchmark signal:
 - It does not extract entities or events by itself.
 - It does not replace `pgvector`; it builds a RAG data model and retrieval flow on top of it.
 - It does not try to be a full graph database.
+- It is not a full GraphRAG application framework, API server, or ingestion pipeline.
 
 ## Quick Start
 
@@ -98,6 +101,19 @@ See [docs/retrieval-profiles.md](docs/retrieval-profiles.md) for the default str
 - `multihop_relation`
 
 See [docs/query-router.md](docs/query-router.md) for automatic profile selection.
+
+## Positioning
+
+There are already good PostgreSQL-oriented RAG and GraphRAG projects. `pg_sag_rag` is positioned as a small database extension, not a replacement for those frameworks.
+
+| Project Type | Typical Focus | `pg_sag_rag` Focus |
+| --- | --- | --- |
+| PostgreSQL GraphRAG toolkits | End-to-end graph retrieval libraries, services, CLIs, or API layers | SQL extension primitives: schema, retrieval functions, routing, evaluation |
+| Vectorization extensions | Embedding generation, vector indexes, hybrid search pipelines | Event/entity modeling and relation-expanded retrieval on top of vectors/text |
+| GraphRAG frameworks | Entity/relation extraction, graph traversal, graph summaries | Event-entity-event expansion using ordinary relational tables and SQL JOINs |
+| Agent retrieval systems | Multi-step tool calls and model-driven planning | Deterministic, inspectable database functions with saved evaluation runs |
+
+See [docs/comparison.md](docs/comparison.md) for a more detailed comparison with adjacent open source projects.
 
 ## Core API
 

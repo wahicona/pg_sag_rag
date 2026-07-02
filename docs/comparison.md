@@ -1,6 +1,6 @@
 # Comparison And Positioning
 
-`pg_sag_rag` is not the only PostgreSQL-oriented RAG or GraphRAG project. The project is deliberately scoped as a SQL-only PostgreSQL extension for event-level retrieval, relation expansion, query routing, and database-native evaluation.
+`pg_sag_rag` is not the only PostgreSQL-oriented RAG, GraphRAG, or SAG project. The project is deliberately scoped as a SQL-only PostgreSQL extension for SAG-style event/entity retrieval, query routing, and database-native evaluation.
 
 ## Short Positioning
 
@@ -18,6 +18,7 @@ Do not use `pg_sag_rag` as a complete ingestion, extraction, API, or Agent frame
 
 | Project | What It Does | Similarity | Difference |
 | --- | --- | --- | --- |
+| [`Zleap-AI/SAG`](https://github.com/Zleap-AI/SAG) | SAG workbench that turns chunks into events and entities, then uses PostgreSQL, `pgvector`, full-text search, and SQL multi-hop retrieval. | Highest similarity. It shares the same core SAG idea: event/entity modeling plus SQL JOIN expansion. | `Zleap-AI/SAG` is a broader SAG workbench and product-oriented implementation. `pg_sag_rag` is a smaller PostgreSQL extension primitive: installable SQL schema/functions, query routing, retrieval profiles, trace helpers, and in-database evaluation. |
 | [`yonk-labs/pg-raggraph`](https://github.com/yonk-labs/pg-raggraph) | PostgreSQL-native GraphRAG toolkit combining vector search, full-text search, graph-style traversal, CLI/API/MCP pieces. | Very close in overall motivation: GraphRAG-style retrieval without a separate graph database. | `pg-raggraph` is a broader Python/toolkit stack. `pg_sag_rag` is a small SQL extension with event-level schema, query router, and database-native evaluation. |
 | [`h4gen/postgres-graph-rag`](https://github.com/h4gen/postgres-graph-rag) | Python package for GraphRAG on Postgres, including recursive SQL traversal. | Similar goal of doing graph-style retrieval in PostgreSQL. | Focuses on recursive graph traversal from a Python package. `pg_sag_rag` focuses on extension-installable SQL primitives and controlled event-entity expansion profiles. |
 | [`neondatabase/pgrag`](https://github.com/neondatabase/pgrag) | Postgres extensions for RAG pipelines, including chunking, embeddings, and reranking. | Shares the idea of pushing RAG functionality into PostgreSQL. | `pgrag` is more about RAG pipeline operations. `pg_sag_rag` does not generate embeddings or call models; it models event/entity retrieval and evaluation. |
@@ -88,7 +89,7 @@ The goal is to make retrieval changes measurable inside PostgreSQL, not only in 
 Use this wording:
 
 ```text
-pg_sag_rag is a SQL-only PostgreSQL extension for event/entity based multi-hop RAG. It uses pgvector, full-text search, and ordinary SQL JOINs to expand from seed events to related events, then routes each query to the retrieval profile that fits the question type.
+pg_sag_rag is a SQL-only PostgreSQL extension that packages SAG-style event/entity retrieval as database-native functions, with query routing and in-database evaluation.
 ```
 
 Avoid these claims:

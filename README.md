@@ -1,10 +1,10 @@
 # pg_sag_rag
 
-SQL-native multi-hop RAG for PostgreSQL. `pg_sag_rag` is a PostgreSQL extension that models enterprise knowledge as documents, chunks, events, entities, and event-entity links, then uses ordinary SQL JOINs, `pgvector`, and PostgreSQL full-text search for retrieval.
+`pg_sag_rag` is a SQL-only PostgreSQL extension that packages SAG-style event/entity retrieval as database-native functions, with query routing and in-database evaluation.
 
 The project targets enterprise RAG and Agent data layers where documents, chunks, events, entities, permissions, metadata, and retrieval traces should live in one auditable database.
 
-This project is not claiming to be the first PostgreSQL RAG or GraphRAG project. It is intentionally narrower: a SQL-only extension that focuses on event-level retrieval, relation expansion through `event_entity`, query routing, and database-native evaluation.
+This project is not claiming to be the first PostgreSQL RAG, GraphRAG, or SAG implementation. It is intentionally narrower than a full SAG workbench: a SQL-only extension that packages SAG-like retrieval primitives for PostgreSQL and adds query routing plus database-native evaluation.
 
 ## Status
 
@@ -104,10 +104,11 @@ See [docs/query-router.md](docs/query-router.md) for automatic profile selection
 
 ## Positioning
 
-There are already good PostgreSQL-oriented RAG and GraphRAG projects. `pg_sag_rag` is positioned as a small database extension, not a replacement for those frameworks.
+There are already good PostgreSQL-oriented RAG, GraphRAG, and SAG projects. `pg_sag_rag` is positioned as a small database extension, not a replacement for those frameworks.
 
 | Project Type | Typical Focus | `pg_sag_rag` Focus |
 | --- | --- | --- |
+| SAG workbenches | Event/entity extraction, SAG retrieval experiments, UI/API/product workflow | SAG-like PostgreSQL extension primitives: schema, SQL functions, routing, evaluation |
 | PostgreSQL GraphRAG toolkits | End-to-end graph retrieval libraries, services, CLIs, or API layers | SQL extension primitives: schema, retrieval functions, routing, evaluation |
 | Vectorization extensions | Embedding generation, vector indexes, hybrid search pipelines | Event/entity modeling and relation-expanded retrieval on top of vectors/text |
 | GraphRAG frameworks | Entity/relation extraction, graph traversal, graph summaries | Event-entity-event expansion using ordinary relational tables and SQL JOINs |

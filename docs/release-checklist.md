@@ -37,7 +37,7 @@ auto                  MRR 0.8000
 - Add a short repository description:
 
 ```text
-GraphRAG without the graph database: SQL-native multi-hop RAG for PostgreSQL.
+SQL-only PostgreSQL extension for SAG-style event/entity retrieval, query routing, and in-database evaluation.
 ```
 
 ## First Tag
@@ -53,5 +53,5 @@ git push origin main --tags
 ```text
 pg_sag_rag v0.1.0 is the first MVP release.
 
-It provides a SQL-only PostgreSQL extension for event/entity based RAG retrieval, hybrid text/vector search, SQL JOIN multi-hop expansion, query routing, and built-in retrieval evaluation.
+It provides a SQL-only PostgreSQL extension that packages SAG-style event/entity retrieval as database-native functions, with query routing and in-database evaluation.
 ```

@@ -7,6 +7,7 @@
 - Run `docker compose exec postgres psql -U postgres -d rag -f /workspace/tests/benchmark.sql`.
 - Run `docker compose exec postgres psql -U postgres -d rag -f /workspace/tests/profile.sql`.
 - Run `docker compose exec postgres psql -U postgres -d rag -f /workspace/tests/router.sql`.
+- Run `scripts/test_pg_matrix.sh` before changing the advertised PostgreSQL support range.
 - Confirm the demo returns both `hybrid` and `multihop` evaluation rows.
 - Confirm `sag_rag.route_query('PX-001 fault code E37 procedure')` returns `multihop_relation`.
 - Confirm `SELECT sag_rag.create_hnsw_indexes(3, 'cosine');` succeeds.
@@ -29,17 +30,17 @@ auto                  MRR 0.8000
 
 - Create a public repository named `pg_sag_rag`.
 - Add the `postgresql`, `pgvector`, `rag`, `graphrag`, `agent-memory`, and `hybrid-search` topics.
-- Enable GitHub Actions.
-- Confirm generated files are not accidentally committed:
-  - `data/hotpot_dev_distractor_v1.json`
-  - `demo/hotpotqa_sample.sql`
-  - `demo/enterprise_benchmark.sql`
-- Add a short repository description:
+- Set the repository description to:
 
 ```text
 SQL-only PostgreSQL extension for SAG-style event/entity retrieval, query routing, and in-database evaluation.
 ```
 
+- Enable GitHub Actions.
+- Confirm generated files are not accidentally committed:
+  - `data/hotpot_dev_distractor_v1.json`
+  - `demo/hotpotqa_sample.sql`
+  - `demo/enterprise_benchmark.sql`
 ## First Tag
 
 ```bash

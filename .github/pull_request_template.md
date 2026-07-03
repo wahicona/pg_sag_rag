@@ -9,6 +9,7 @@ What changed?
 - [ ] `docker compose exec -T postgres psql -U postgres -d rag -f /workspace/tests/benchmark.sql`
 - [ ] `docker compose exec -T postgres psql -U postgres -d rag -f /workspace/tests/profile.sql`
 - [ ] `docker compose exec -T postgres psql -U postgres -d rag -f /workspace/tests/router.sql`
+- [ ] `scripts/test_pg_matrix.sh` when compatibility or install behavior changes
 
 ## Benchmark Impact
 

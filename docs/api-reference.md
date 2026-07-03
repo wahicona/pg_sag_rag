@@ -62,7 +62,8 @@ This is the public SQL surface for `v0.1.0`.
 
 ## Compatibility Notes
 
-- Requires PostgreSQL with `pgvector` and `pg_trgm`.
+- Supports PostgreSQL 14+ with `pgvector` and `pg_trgm`.
+- The `v0.1.0` compatibility matrix has been tested on PostgreSQL 14.23, 15.18, 16.14, and 17.10 with `pgvector` 0.8.4 and `pg_trgm` 1.6.
 - `embedding` columns are declared as unconstrained `vector` so users can choose their model dimension.
 - `v0.1.0` is SQL-only and does not call LLM or embedding APIs.
 - Public APIs may still change before `1.0`; changes should be documented in `CHANGELOG.md`.

@@ -7,13 +7,19 @@ on:
 jobs:
   smoke:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        pg-major: [14, 15, 16, 17]
+    env:
+      PG_MAJOR: ${{ matrix.pg-major }}
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build PostgreSQL image
+      - name: Build PostgreSQL ${{ matrix.pg-major }} image
         run: docker compose build
 
-      - name: Start PostgreSQL
+      - name: Start PostgreSQL ${{ matrix.pg-major }}
         run: docker compose up -d
 
       - name: Wait for PostgreSQL

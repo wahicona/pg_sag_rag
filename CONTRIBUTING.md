@@ -14,6 +14,12 @@ docker compose exec -T postgres psql -U postgres -d rag -f /workspace/tests/prof
 docker compose exec -T postgres psql -U postgres -d rag -f /workspace/tests/router.sql
 ```
 
+Run the PostgreSQL compatibility matrix when install behavior, SQL syntax, or dependency requirements change:
+
+```bash
+scripts/test_pg_matrix.sh
+```
+
 The extension is SQL-only in `v0.1.0`; most changes should be made in `pg_sag_rag--0.1.0.sql`, tests, docs, or benchmark scripts.
 
 ## Pull Request Checklist
@@ -22,6 +28,7 @@ The extension is SQL-only in `v0.1.0`; most changes should be made in `pg_sag_ra
 - Add or update SQL tests for retrieval behavior changes.
 - Update README/docs when user-facing APIs change.
 - Run the Docker test commands above before opening a PR.
+- Run `scripts/test_pg_matrix.sh` for compatibility-related changes.
 - Include benchmark output when changing ranking, routing, scoring, or fanout behavior.
 
 ## Benchmark Changes

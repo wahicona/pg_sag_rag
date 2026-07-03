@@ -1,5 +1,9 @@
 # pg_sag_rag
 
+[![CI](https://github.com/wahicona/pg_sag_rag/actions/workflows/ci.yml/badge.svg)](https://github.com/wahicona/pg_sag_rag/actions/workflows/ci.yml)
+[![PostgreSQL 14+](https://img.shields.io/badge/PostgreSQL-14%2B-336791)](https://www.postgresql.org/)
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+
 `pg_sag_rag` is a SQL-only PostgreSQL extension that packages SAG-style event/entity retrieval as database-native functions, with query routing and in-database evaluation.
 
 The project targets enterprise RAG and Agent data layers where documents, chunks, events, entities, permissions, metadata, and retrieval traces should live in one auditable database.
@@ -9,6 +13,12 @@ This project is not claiming to be the first PostgreSQL RAG, GraphRAG, or SAG im
 ## Status
 
 `v0.1.0` is an MVP intended for evaluation, demos, and design feedback. The extension is SQL-only: no C/Rust build step, no background workers, and no model API calls inside PostgreSQL.
+
+## Compatibility
+
+Supports PostgreSQL 14+ with `pgvector` and `pg_trgm` available.
+
+The compatibility matrix has been tested on PostgreSQL 14.23, 15.18, 16.14, and 17.10 using `pgvector` 0.8.4 and `pg_trgm` 1.6. Each version passed the smoke, benchmark, profile, and router SQL tests.
 
 Current benchmark signal:
 
@@ -39,6 +49,12 @@ Current benchmark signal:
 ```bash
 docker compose up --build -d
 docker compose exec postgres psql -U postgres -d rag -f /workspace/demo/demo.sql
+```
+
+The default Docker target is PostgreSQL 16. To run another supported major version:
+
+```bash
+PG_MAJOR=17 docker compose up --build -d
 ```
 
 Expected demo signal:
@@ -159,7 +175,13 @@ make install
 psql -d yourdb -c "CREATE EXTENSION vector; CREATE EXTENSION pg_trgm; CREATE EXTENSION pg_sag_rag;"
 ```
 
-Local install assumes `pgvector`, `pg_trgm`, PostgreSQL server headers, and `pg_config` are available.
+Local install assumes `pgvector`, `pg_trgm`, and PostgreSQL extension build support such as `pg_config`/PGXS are available.
+
+To rerun the PostgreSQL compatibility matrix locally:
+
+```bash
+scripts/test_pg_matrix.sh
+```
 
 ## Evaluation
 

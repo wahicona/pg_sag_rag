@@ -12,6 +12,7 @@
 - Docker demo and CI smoke test.
 - Synthetic benchmark for bridge-event to answer-event retrieval.
 - Enterprise-shaped benchmark for direct, cross-document, and noisy relation workloads.
+- Compatibility tests across PostgreSQL 14, 15, 16, and 17.
 
 ## 0.2
 
@@ -32,5 +33,4 @@
 
 - Partitioning recipes for large event tables.
 - CloudNativePG and Kubernetes examples.
-- Compatibility tests across PostgreSQL versions.
 - Optional background workers only if asynchronous maintenance becomes necessary.

@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- Added PostgreSQL 14, 15, 16, and 17 compatibility matrix testing.
+- Updated Docker builds to accept `PG_MAJOR` and install the matching `pgvector` package.
+- Updated GitHub Actions to run the SQL test suite across PostgreSQL 14+.
+- Added README badges and refreshed GitHub release documentation.
+
 ## 0.1.0
 
 Initial MVP.
